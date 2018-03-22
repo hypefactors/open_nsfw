@@ -104,8 +104,8 @@ def main(argv):
     image_data = open(args.input_file).read()
 
     # Pre-load caffe model.
-    nsfw_net = caffe.Net(args.model_def,  # pylint: disable=invalid-name
-        args.pretrained_model, caffe.TEST)
+    nsfw_net = caffe.Net(args.model_def, 1,  # pylint: disable=invalid-name
+        weights=args.pretrained_model)#, caffe.TEST)
 
     # Load transformer
     # Note that the parameters are hard-coded for best results
