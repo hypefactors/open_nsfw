@@ -17,11 +17,11 @@ def hello():
     try:
         result = subprocess.check_output(["python", "./classify_nsfw.py", "--model_def", "nsfw_model/deploy.prototxt", "--pretrained_model", "nsfw_model/resnet_50_1by2_nsfw.caffemodel", filename])
         os.remove(filename)
+        result = result.split(" ")[-1]
     except CalledProcessError as e:
         result = e.output
 
-    result = result.split(" ")[-1]
     return result
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80, processes=4)
+    app.run(host='0.0.0.0', port=80)
